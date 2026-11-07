@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Beaufort Flock Files</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="50 Flock license-plate camera sites in Bluffton, SC. What the town's own records say, and what they leave out. Every claim linked to its source document.">
+<meta name="theme-color" content="#16202e">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Beaufort Flock Files">
+<meta property="og:title" content="The Beaufort Flock Files">
+<meta property="og:description" content="50 license-plate camera sites in Bluffton, SC. What the town's own records say, and what they leave out. Every claim linked to its source document.">
+<meta property="og:image" content="https://drthunter.github.io/beaufort-flock-files/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Beaufort Flock Files: 50 license-plate camera sites, shown as a grid of camera dots with repeated entries in red.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Beaufort Flock Files">
+<meta name="twitter:description" content="50 license-plate camera sites in Bluffton, SC. What the town's own records say, and what they leave out.">
+<meta name="twitter:image" content="https://drthunter.github.io/beaufort-flock-files/og-image.png">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800;900&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a case binder. Talking points up top, then the story told exhibit by exhibit, then the raw camera list. Citations open the exhibit in a reader with the quoted line highlighted. */
+:root{
+  --bg:#f3f4f6; --paper:#ffffff; --ink:#16202e; --muted:#5a6575; --rule:#d8dce3;
+  --accent:#1f4fa3; --mark:#ffe58a; --mark-ink:#16202e; --flag:#b42318; --flag-bg:#fdecea;
+  --gap:#8a5a00; --gap-bg:#fff4dc; --inf:#4b5563; --inf-bg:#eceef2;
+  --display:"Public Sans",system-ui,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f141c; --paper:#171e29; --ink:#e7ebf1; --muted:#9aa5b5; --rule:#2b3544;
+  --accent:#8db4ff; --mark:#6b5a12; --mark-ink:#fff6cf; --flag:#ff8a7a; --flag-bg:#3a1714;
+  --gap:#f2c063; --gap-bg:#33280e; --inf:#c2c9d4; --inf-bg:#232b38; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --paper:#171e29; --ink:#e7ebf1; --muted:#9aa5b5; --rule:#2b3544;
+  --accent:#8db4ff; --mark:#6b5a12; --mark-ink:#fff6cf; --flag:#ff8a7a; --flag-bg:#3a1714;
+  --gap:#f2c063; --gap-bg:#33280e; --inf:#c2c9d4; --inf-bg:#232b38; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+h1,h2,h3,.ui{font-family:var(--display)}
+h1,h2,h3{text-wrap:balance;margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+header.top{padding-block:40px 20px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(34px,6vw,54px);font-weight:900;line-height:1.02;letter-spacing:-.02em;margin-top:8px}
+.lede{font-size:20px;max-width:62ch;margin:14px 0 0}
+
+.searchbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;border-bottom:1px solid var(--rule)}
+.searchbar label{position:absolute;left:-9999px}
+#q{width:100%;font:500 17px var(--display);padding:12px 14px;border:2px solid var(--ink);border-radius:6px;background:var(--paper);color:var(--ink)}
+.navrow{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font:600 14px var(--display)}
+.navrow a{text-decoration:none}
+#count{font:500 13px var(--mono);color:var(--muted);margin-top:6px;min-height:1em}
+
+section{padding-top:44px}
+h2{font-size:28px;font-weight:800;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:6px 0 18px;max-width:62ch;font-size:17px}
+
+.key{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.tag{display:inline-block;font:600 12px var(--display);letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+.t-rec{background:var(--flag-bg);color:var(--flag)}
+.t-gap{background:var(--gap-bg);color:var(--gap)}
+.t-inf{background:var(--inf-bg);color:var(--inf)}
+
+.points{display:grid;gap:14px;counter-reset:pt}
+.point{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:18px 20px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px}
+.point .rank{font:900 30px/1 var(--display);color:var(--muted);grid-row:span 3}
+.point h3{font-size:20px;font-weight:800;line-height:1.25}
+.point p{margin:6px 0 0}
+.point .meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.point .ask{font-size:16px;color:var(--muted);margin-top:8px}
+.point .ask b{font-family:var(--display);font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink)}
+
+.cite{font:500 13px var(--mono);border:1px solid var(--accent);color:var(--accent);background:transparent;border-radius:4px;padding:2px 7px;cursor:pointer;white-space:nowrap;vertical-align:1px}
+.cite:hover{background:var(--accent);color:var(--paper)}
+
+.story{display:grid;gap:0;border-left:3px solid var(--ink);margin-left:6px}
+.chapter{padding:0 0 30px 22px;position:relative}
+.chapter::before{content:"";position:absolute;left:-9px;top:6px;width:15px;height:15px;border-radius:50%;background:var(--bg);border:3px solid var(--ink)}
+.chapter .when{font:500 13px var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.chapter h3{font-size:22px;font-weight:800;margin-top:2px}
+.chapter p{margin:8px 0 0;max-width:64ch}
+.chapter .plain{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:10px 14px;margin-top:12px;font-size:16px}
+.chapter .plain b{font-family:var(--display);font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+
+.tablebox{overflow-x:auto;background:var(--paper);border:1px solid var(--rule);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:16px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:600 12px var(--display);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td.n{font:500 14px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;width:3em}
+td.note{font-size:14px;color:var(--flag);font-family:var(--display)}
+
+.asks{display:grid;gap:10px;padding:0;margin:0;list-style:none}
+.asks li{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px 16px}
+.asks li b{font-family:var(--display)}
+
+.exhibits{display:grid;gap:10px}
+.exh{display:flex;gap:14px;align-items:baseline;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:12px 16px;flex-wrap:wrap}
+.exh .letter{font:900 22px var(--display);min-width:1.6em}
+.exh .t{flex:1;min-width:0}
+.exh .t small{display:block;color:var(--muted);font:500 13px var(--mono)}
+
+.hits{display:grid;gap:8px;margin-top:6px}
+.hit{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:10px 14px;font-size:16px;text-align:left;cursor:pointer;color:var(--ink);font-family:var(--body)}
+.hit small{display:block;font:500 12px var(--mono);color:var(--muted)}
+mark.q{background:var(--mark);color:var(--mark-ink);padding:0 2px;border-radius:2px}
+
+.hide{display:none!important}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:15px;color:var(--muted)}
+
+/* Reader */
+#reader{position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto}
+#reader .bar{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--rule);padding-top:calc(10px + env(safe-area-inset-top,0px));padding-bottom:10px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+#back{font:800 16px var(--display);background:var(--ink);color:var(--bg);border:0;border-radius:6px;padding:10px 16px;cursor:pointer}
+#reader .bar .rt{flex:1;min-width:0;font:700 15px var(--display)}
+#reader .bar .rt small{display:block;font:500 12px var(--mono);color:var(--muted)}
+#orig{font:600 14px var(--display)}
+#reader .doc{max-width:760px;margin:20px auto 60px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:28px max(16px,4vw)}
+#reader .doc .line{font-family:var(--mono);font-size:14.5px;line-height:1.6;white-space:pre-wrap;margin:0;padding:1px 6px;border-radius:3px}
+#reader .doc .line.hl{background:var(--mark);color:var(--mark-ink);box-shadow:-6px 0 0 var(--flag)}
+#reader .doc .note{font:500 13px var(--display);color:var(--muted);border-top:1px dashed var(--rule);margin-top:20px;padding-top:12px}
+
+@media (max-width:520px){
+  body{font-size:17px}
+  .point{grid-template-columns:1fr}
+  .point .rank{grid-row:auto;font-size:22px}
+}
+@media (prefers-reduced-motion:no-preference){ html{scroll-behavior:smooth} }
+</style>
+
+<meta property="og:url" content="https://drthunter.github.io/beaufort-flock-files/">
+<link rel="canonical" href="https://drthunter.github.io/beaufort-flock-files/">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Town of Bluffton · Beaufort County, SC · Public records file</div>
+    <h1>The Beaufort Flock Files</h1>
+    <p class="lede">What the town's own records say about the Flock license-plate camera network, and what they leave out. Every claim below links to the document it comes from. Click any grey-blue tag to read the source with the exact line highlighted.</p>
+  </header>
+
+  <div class="searchbar">
+    <label for="q">Search everything</label>
+    <input id="q" type="search" placeholder="Search talking points, the timeline, camera locations, and the documents…" autocomplete="off">
+    <div class="navrow"><a href="#points">Talking points</a><a href="#story">The story</a><a href="#cameras">Camera list</a><a href="#asks">Next FOIA requests</a><a href="#exhibits">Source files</a></div>
+    <div id="count" aria-live="polite"></div>
+    <div id="dochits" class="hits"></div>
+  </div>
+
+  <section id="points">
+    <h2>Strongest talking points</h2>
+    <p class="sub">Ranked by how well the records back them up. Lead with the top ones in public comment and letters to council.</p>
+    <div class="key">
+      <span class="tag t-rec">On the record</span><span class="ui" style="font-size:14px;color:var(--muted)">the document says this directly</span>
+      <span class="tag t-gap">Missing</span><span class="ui" style="font-size:14px;color:var(--muted)">something the records should show but don't</span>
+      <span class="tag t-inf">Our reading</span><span class="ui" style="font-size:14px;color:var(--muted)">a fair inference, not a quote</span>
+    </div>
+    <div class="points" id="pointlist"></div>
+  </section>
+
+  <section id="story">
+    <h2>The story, in order</h2>
+    <p class="sub">How a police chief's idea in February 2024 became 50 camera sites by 2026, told one record at a time.</p>
+    <div class="story" id="storylist"></div>
+  </section>
+
+  <section id="cameras">
+    <h2>All 50 listed camera sites</h2>
+    <p class="sub">Copied from the town's FOIA response (Exhibit E). Rows in red are listed more than once. The town did not say which cameras are switched on.</p>
+    <div class="tablebox"><table><thead><tr><th>#</th><th>Location as written</th><th>Note</th></tr></thead><tbody id="camrows"></tbody></table></div>
+  </section>
+
+  <section id="asks">
+    <h2>Next FOIA requests</h2>
+    <p class="sub">Each gap above turns into a request. These are the records that would confirm or knock down each point.</p>
+    <ul class="asks" id="asklist"></ul>
+  </section>
+
+  <section id="exhibits">
+    <h2>Source files</h2>
+    <p class="sub">The five records this site is built on, in date order.</p>
+    <div class="exhibits" id="exlist"></div>
+  </section>
+
+  <footer>
+    Built from five public records. "Our reading" items are interpretations and are marked as such. One resident's name and home address from the February 2024 minutes are left off this site. Check each claim against the source before quoting it to officials.
+  </footer>
+</div>
+
+<div id="reader" hidden role="dialog" aria-modal="true" aria-labelledby="rtitle">
+  <div class="bar">
+    <button id="back" type="button">← Back to where I was</button>
+    <div class="rt" id="rtitle"></div>
+    <a id="orig" target="_blank" rel="noopener">Open original file</a>
+  </div>
+  <div class="doc" id="rdoc"></div>
+</div>
+
+<script>
+const DOCS = {
+  A:{title:"LECAC meeting minutes, Feb 8, 2024", short:"Minutes · Feb 8 2024", file:null,
+     note:"Transcribed from the town's Word file “2. LE Advise mins Feb 24.docx”. A resident's name and home address are removed here.",
+     text:`TOWN OF BLUFFTON
+LAW ENFORCEMENT CITIZENS ADVISORY COMMITTEE MEETING
+Thursday, February 8, 2024
+
+Members present: Michael Frazier, George Baily, Mayra Rivera-Vazquez, Tabor Vaux
+Members Not Present: Bill O'Toole, Jennifer Morrow, Reggie Howard
+Staff Present: Chief Joe Babkiewicz, Sergeant M. Ferrelli
+
+Michael Frazier called the meeting to order at 18:00 hrs. at the Henry "Emmett" McCracken Council Chambers located at 20 Bridge Street, followed by the Pledge of Allegiance.
+
+Public Comment:
+[Resident, name and address removed]. Stated that this was her first time attending and wanted to observe the goings on at the LECAC meetings.
+She also voiced her praises for the FLOCK cameras that are currently being used in her neighborhood (Pine Ridge).
+
+Old Business:
+- Mike Frazier made a motion to approve the prior meeting minutes, was seconded by Myra Rivera-Vazquez
+- Mike Frazier made a motion to approve the agenda for this meeting, was seconded by George Baily.
+- Mike Frazier made a motion to approve the 2024 LECAC meeting schedule, was seconded by Myra Rivera-Vazquez (Tabor Vaux also moved to approve with any future schedule modifications final approval by chairman Jennifer Morrow as see fit).
+
+New Business:
+- Chief Babkiewicz presented 3 newly revised Bluffton Police Department Policies to the committee for their review, and discussed the changes made to each one.
+  -BPD Pursuit Policy- George Baily motion to approve policy changes, seconded by Mike Frazier.
+  -BPD Response to Resistance Policy- Mike Frazier motion to approve policy changes, seconded by George Baily.
+  -BPD Discharging of Firearm Policy- George Baily motion to approve policy changes, seconded by Mike Frazier.
+
+Discussion:
+-Chief Babkiewicz discussed the department stats in comparison to surrounding cities and towns of similar size within the state.
+-Chief Babkiewicz also discussed the department's desire to obtain FLOCK camera systems, to be implemented and used throughout the town in hopes of increasing the probability of solving various crimes.
+
+A motion to adjourn was made at 1900 hrs. by Mike Frazier, and all members seconded the motion.
+The next scheduled LECAC meeting is slated for March 14th, 2024, at 1800hrs.
+
+Sergeant Matt Ferrelli
+Secretary`},
+  B:{title:"LECAC agenda, Nov 14, 2024", short:"Agenda · Nov 14 2024", file:"docs/2024-11-14-lecac-agenda.pdf",
+     text:`Law Enforcement Citizens Advisory Committee Meeting
+Thursday, November 14, 2024 at 6:00 PM
+Theodore D. Washington Municipal Building, Henry "Emmett" McCracken Jr. Council Chambers, 20 Bridge Street, Bluffton, SC
+
+AGENDA
+I. CALL TO ORDER
+II. ROLL CALL
+III. APPROVAL OF MINUTES
+   a. October 10, 2024 Minutes
+IV. PUBLIC COMMENT
+V. OLD BUSINESS
+   a. Review of SOP 15 and recommended changes made by LECAC. - Chief Babkiewicz
+   b. Review of SOP 17 and recommended changes made by LECAC. - Chief Babkiewicz
+   c. Review of SOP 18 and recommended changes made by LECAC. - Chief Babkiewicz
+VI. NEW BUSINESS
+   a. Review of New SOP for use of Flock Cameras. - Chief Babkiewicz
+   b. Adoption of 2025 Law Enforcement Citizens Advisory Commitee Meeting Dates. Chief Babkiewicz
+VII. DISCUSSION
+   a. Upcoming events
+      a. Operation Christmas Child
+      b. First Responder Food Drive
+      c. Christmas Tree lighting/Parade
+      d. BPD Christmas Party
+VIII. ADJOURNMENT
+NEXT MEETING DATE: Thursday, December 12, 2024
+
+"FOIA Compliance - Public notification of this meeting has been published and posted in compliance with the Freedom of Information Act and the Town of Bluffton policies."
+[ADA accommodation notice]
+Executive Session - The public body may vote to go into executive session for any item identified for action on the agenda.
+*Please note that each member of the public may speak at one public comment session and a form must be filled out and given to the Town Clerk.
+Public comment is limited to 3 minutes per speaker.`},
+  C:{title:"LECAC agenda, Jan 9, 2025", short:"Agenda · Jan 9 2025", file:"docs/2025-01-09-lecac-agenda.pdf",
+     text:`Law Enforcement Citizens Advisory Committee Meeting
+Thursday, January 09, 2025 at 6:00 PM
+Theodore D. Washington Municipal Building, Henry "Emmett" McCracken Jr. Council Chambers, 20 Bridge Street, Bluffton, SC
+
+AGENDA
+I. CALL TO ORDER
+II. ROLL CALL
+III. APPROVAL OF MINUTES
+   a. October 10, 2024 Minutes
+   b. November 14, 2024 Minutes
+IV. PUBLIC COMMENT
+V. OLD BUSINESS
+VI. NEW BUSINESS
+   a. Approval of November 2025 Meeting Date Change. Chief Babkiewicz
+VII. DISCUSSION
+   a. Christmas Events- Updates
+      a. Operation Christmas Child- 150 boxes filled
+      b. Shop with a Cop Update
+      c. BPD Christmas Party
+   b. Update on Flock Cameras
+      a. Policy has been posted
+      b. Working with CIP on abatement for locations of cameras
+      c. Provide training to all staff
+      d. Hoping to have cameras in place by end of February
+VIII. ADJOURNMENT
+NEXT MEETING DATE: THURSDAY, FEBRUARY 13, 2025
+
+"FOIA Compliance - Public notification of this meeting has been published and posted in compliance with the Freedom of Information Act and the Town of Bluffton policies."
+[ADA accommodation notice]
+Executive Session - The public body may vote to go into executive session for any item identified for action on the agenda.
+*Please note that each member of the public may speak at one public comment session and a form must be filled out and given to the Town Clerk.
+Public comment is limited to 3 minutes per speaker.`},
+  D:{title:"LECAC agenda, Mar 13, 2025", short:"Agenda · Mar 13 2025", file:"docs/2025-03-13-lecac-agenda.pdf",
+     text:`Law Enforcement Citizens Advisory Committee Meeting
+Thursday, March 13, 2025 at 6:00 PM
+Theodore D. Washington Municipal Building, Henry "Emmett" McCracken Jr. Council Chambers, 20 Bridge Street, Bluffton, SC
+
+AGENDA
+I. CALL TO ORDER
+II. ROLL CALL
+III. PUBLIC COMMENT
+IV. OLD BUSINESS
+V. NEW BUSINESS
+   a. Approval of Flock Camera System Audit - Chief Babkiewicz
+VI. DISCUSSION
+   a. Review of Monthly Goals for February 2025 - Chief Babkiewicz
+   b. 2025 Bluffton Police Department Awards Ceremony - Chief Babkiewicz
+VII. ADJOURNMENT
+NEXT MEETING DATE: Thursday, April 10, 2025
+
+"FOIA Compliance - Public notification of this meeting has been published and posted in compliance with the Freedom of Information Act and the Town of Bluffton policies."
+[ADA accommodation notice]
+Executive Session - The public body may vote to go into executive session for any item identified for action on the agenda.
+*Please note that each member of the public may speak at one public comment session and a form must be filled out and given to the Town Clerk.
+Public comment is limited to 3 minutes per speaker.`},
+  E:{title:"FOIA #20363 response: Flock camera locations", short:"FOIA 20363 · fulfilled Jul 6 2026", file:"docs/foia-20363-flock-locations.pdf",
+     text:`Bluffton Flock Camera Locations
+
+Disclaimer: This project is nearing completion; however, not all listed cameras are currently active or operational.
+Some planned camera locations may change prior to final installation due to permitting requirements, easement approvals, property owner permissions, or other project-related considerations.
+
+1. May River Road EB @ BPD Substation
+2. Buckwalter Parkway @ Fording Island Road (SB)
+3. Parkside Commons
+4. Route 46 @ Route 170
+5. South Okatie Highway @ New River Boat Landing
+6. Route 170 East @ May River Crossing
+7. Bluffton Parkway @ Buckwalter Parkway
+8. Bluffton Parkway EB @ Route 170
+9. Bluffton Parkway WB @ Route 170
+10. Route 170 WB @ Cypress Ridge
+11. Buckwalter Parkway NB @ May River
+12. Bluffton Parkway WB @ Goethe Road
+13. Bluffton Parkway WB @ Buckwalter Parkway
+14. Buckwalter Parkway NB @ Bluffton Parkway
+15. Buck Island Road SB @ Old Carolina
+16. Bluffton Road SB @ 184 Parking Lot
+17. Buck Island Road SB @ Bluffton Parkway
+18. Buck Island Road @ Grayco
+19. Buckwalter Parkway @ Cassidy Drive (NB)
+20. Buckwalter Parkway @ Shell Hall (SB)
+21. Okatie Highway @ Heritage West (SB)
+22. New Riverside Road @ Red Barn Drive (SB)
+23. Bluffton Road @ Village Commons (NB)
+24. Okatie Highway @ Seagrass (NB)
+25. Simmonsville Road NB @ Bluffton Parkway
+26. Fording Island Road @ Towne Drive
+27. Fording Island Road @ Toyota Drive
+28. Mill Creek Boulevard @ Okatie Highway
+29. Bridge Street & Wharf Street (SB)
+30. May River Road @ Buckwalter Parkway
+31. New Riverside Road @ New Riverside Village West
+32. Bluffton Parkway @ Buckwalter Parkway
+33. Buckwalter Parkway @ Farm Lake Drive (South)
+34. Simmonsville Road @ County Recycling Center
+35. Buckwalter Place Boulevard @ Buckwalter Parkway
+36. Innovation Drive @ Kroger
+37. Buck Island Road @ May River Road
+38. May River Road @ Bluffton Road
+39. Bruin Road @ Burnt Church Road
+40. Promenade Street @ State of Mind Street
+41. Heyward Street @ May River Road
+42. May River Road @ Calhoun Road
+43. Bridge Street @ Calhoun Street
+44. Buck Island Road @ Bluffton Parkway
+45. Red Cedar Street @ Bluffton Parkway
+46. Bluffton Parkway @ Simmonsville Road
+47. Buckwalter Parkway @ Pinellas Drive (South)
+48. Buckwalter Parkway @ Pinellas Drive (North)
+49. Bluffton Parkway @ Goethe Road
+50. 9th Avenue @ Pin Oak Street`}
+};
+const ORDER=["A","B","C","D","E"];
+
+// c(doc, text to highlight, label)
+const c=(d,f,l)=>`<button type="button" class="cite" data-doc="${d}" data-find="${f.replace(/"/g,'&quot;')}">Exhibit ${d}${l?' · '+l:''}</button>`;
+
+const POINTS=[
+ {tag:"gap", h:"No public vote, contract, or price tag appears anywhere in the record",
+  p:`The path in these files runs from the police chief's stated "desire" ${c("A","desire to obtain FLOCK")} to the committee "reviewing" a police-written rulebook ${c("B","New SOP for use of Flock Cameras")} to "Policy has been posted" ${c("C","Policy has been posted")}. Not one of these five records shows Town Council voting on Flock, a signed contract, or what it costs taxpayers.`,
+  ask:"Who voted to buy this, when, and for how much?"},
+ {tag:"rec", h:"The police wrote the camera rules and an advisory panel only “reviewed” them",
+  p:`The Flock policy is an internal police SOP, presented by the chief himself ${c("B","New SOP for use of Flock Cameras")}. The body reviewing it is the Law Enforcement Citizens <em>Advisory</em> Committee. In February 2024 that committee voted on three other police policies, but the Flock idea came up only under "Discussion," with no motion ${c("A","desire to obtain FLOCK")}.`,
+  ask:"Why are rules for mass vehicle tracking set by the department that uses it, with no binding public approval?"},
+ {tag:"rec", h:"The policy was posted before the minutes of the meeting that reviewed it were even approved",
+  p:`The Flock rulebook was reviewed on Nov 14, 2024 ${c("B","New SOP for use of Flock Cameras")}. The minutes of that meeting were not up for approval until Jan 9, 2025, the same agenda that announces "Policy has been posted" ${c("C","November 14, 2024 Minutes","minutes")} ${c("C","Policy has been posted","posted")}. October's minutes also show up on both agendas, so they weren't approved in November either ${c("B","October 10, 2024 Minutes","Nov")} ${c("C","October 10, 2024 Minutes","Jan")}.`,
+  ask:"Request the approved Nov 14 and Dec 12, 2024 minutes. Did the scheduled December meeting happen at all?"},
+ {tag:"rec", h:"The department “audited” its own camera system, about two weeks after launch",
+  p:`On Mar 13, 2025 the committee was asked to approve a "Flock Camera System Audit," presented by the chief whose department runs the cameras ${c("D","Approval of Flock Camera System Audit")}. The cameras were only targeted to go live by the end of February ${c("C","end of February")}. That agenda also has no "approval of minutes" item at all ${c("D","III. PUBLIC COMMENT","agenda")}.`,
+  ask:"Who performed the audit, what did it check, and where is the report?"},
+ {tag:"rec", h:"Flock cameras were already watching a Bluffton neighborhood before any town rules existed",
+  p:`At the February 2024 meeting, a resident praised Flock cameras "currently being used" in the Pine Ridge neighborhood ${c("A","currently being used in her neighborhood")}. At that same meeting the chief only expressed a "desire" to get Flock for the town ${c("A","desire to obtain FLOCK")}. The town's policy wasn't written until November ${c("B","New SOP for use of Flock Cameras")}.`,
+  ask:"Does Bluffton PD search HOA-owned Flock cameras, and under what agreement?"},
+ {tag:"rec", h:"A year and a half past the deadline, the town still can't say which cameras are on",
+  p:`In January 2025 the plan was cameras "in place by end of February" ${c("C","end of February")}. The July 2026 FOIA answer says the project is only "nearing completion" and "not all listed cameras are currently active," without saying which ones are ${c("E","not all listed cameras are currently active")}.`,
+  ask:"Which cameras are live today, and when did each one start recording?"},
+ {tag:"rec", h:"The official camera list is sloppy: the same spot is listed more than once",
+  p:`Entries #7 and #32 are word-for-word identical ${c("E","7. Bluffton Parkway @ Buckwalter Parkway","#7")} ${c("E","32. Bluffton Parkway @ Buckwalter Parkway","#32")}. That intersection appears four times in all (#7, 13, 14, 32). Goethe Road, Buck Island Road, and Simmonsville Road crossings of Bluffton Parkway each appear twice. By our count the 50 entries cover about 40 distinct places. Either the record is careless, or some corners have several cameras and "50" undercounts them.`,
+  ask:"How many physical cameras exist, with their ID numbers and exact positions?"},
+ {tag:"gap", h:"Some cameras may sit on private property under agreements nobody has seen",
+  p:`The town says locations may change because of "easement approvals, property owner permissions" ${c("E","easement approvals, property owner permissions")}. Several sites are commercial: Parkside Commons ${c("E","3. Parkside Commons","#3")}, Kroger on Innovation Drive ${c("E","36. Innovation Drive @ Kroger","#36")}, and the County Recycling Center ${c("E","34. Simmonsville Road @ County Recycling Center","#34")}.`,
+  ask:"Release every easement, permit, and property owner agreement for camera sites."},
+ {tag:"inf", h:"The cameras ring the main roads in and out of town",
+  p:`The list covers Route 46 and Route 170 ${c("E","4. Route 46 @ Route 170","#4")}, Fording Island Road (US 278) ${c("E","26. Fording Island Road @ Towne Drive","#26")}, Okatie Highway ${c("E","21. Okatie Highway @ Heritage West","#21")}, and many points along Buckwalter Parkway and Bluffton Parkway. It also reaches Old Town side streets near Town Hall ${c("E","43. Bridge Street @ Calhoun Street","#43")} and the Promenade ${c("E","40. Promenade Street","#40")}. It looks hard to drive into, out of, or around Bluffton without passing a camera.`,
+  ask:"Map it. A visual of 50 pins on the town's main roads makes the point faster than any speech."},
+ {tag:"rec", h:"Staff training came after the policy, not before",
+  p:`The January 2025 update lists "Policy has been posted" and then "Provide training to all staff" as a to-do ${c("C","Provide training to all staff")}.`,
+  ask:"Request training materials, dates, and sign-in sheets."},
+ {tag:"gap", h:"The records never mention data storage, sharing, or who can search",
+  p:`Across all five records there is no word on how long plate data is kept, whether it is shared with other agencies or Flock's national network, or who audits searches. The SOP that would answer this wasn't included in these files ${c("B","New SOP for use of Flock Cameras")}.`,
+  ask:"Request the full Flock SOP, retention settings, data-sharing list, and search audit logs."},
+ {tag:"rec", h:"Public input is tightly limited",
+  p:`Each agenda limits speakers to 3 minutes, one comment session per person, with a form filed with the Town Clerk ${c("B","limited to 3 minutes")}. The only public comment about Flock anywhere in these records is praise ${c("A","voiced her praises for the FLOCK cameras")}.`,
+  ask:"Show up, fill out the form, and get the opposing view on the record."}
+];
+
+const STORY=[
+ {when:"February 8, 2024", h:"The idea shows up",
+  p:`At a citizens advisory committee meeting, Police Chief Joe Babkiewicz talks about the department's "desire to obtain FLOCK camera systems" for use "throughout the town" ${c("A","desire to obtain FLOCK")}. It's listed under Discussion. The committee votes on three other police policies that night, but takes no vote on Flock ${c("A","BPD Pursuit Policy")}. Only four of seven members attended; the chair was absent ${c("A","Members Not Present")}.`,
+  plain:`Flock was floated as a casual discussion item, not a decision. Meanwhile a resident mentioned Flock cameras were already running in her neighborhood ${c("A","currently being used in her neighborhood")}.`},
+ {when:"November 14, 2024", h:"Police write the rulebook",
+  p:`Nine months later, the chief presents a "New SOP for use of Flock Cameras" to the same advisory committee ${c("B","New SOP for use of Flock Cameras")}. An SOP is a standard operating procedure, an internal police rule. The agenda calls it a "review," not an approval.`,
+  plain:`The people who will use the cameras wrote the rules for using them. Citizens could only advise.`},
+ {when:"December 12, 2024", h:"A meeting that leaves no trace",
+  p:`The November agenda schedules the next meeting for December 12 ${c("B","NEXT MEETING DATE: Thursday, December 12, 2024")}. The January agenda approves October and November minutes but never mentions December ${c("C","III. APPROVAL OF MINUTES")}.`,
+  plain:`Either the December meeting was cancelled or its minutes are missing. Worth a records request.`},
+ {when:"January 9, 2025", h:"“Policy has been posted”",
+  p:`The agenda's Flock update says the policy is already posted, the department is "working with CIP on abatement for locations," staff still need training, and the goal is cameras "in place by end of February" ${c("C","Update on Flock Cameras")}. CIP usually means the town's Capital Improvement Program, which suggests construction money.`,
+  plain:`The rules went live before the November minutes were approved and before staff were trained.`},
+ {when:"March 13, 2025", h:"The “audit”",
+  p:`The committee is asked to approve a "Flock Camera System Audit," again presented by the chief ${c("D","Approval of Flock Camera System Audit")}. No document in this file says who did the audit or what it found.`,
+  plain:`The department checked its own homework, roughly two weeks after the planned launch.`},
+ {when:"July 6, 2026", h:"FOIA reveals 50 sites, still unfinished",
+  p:`The town's response to FOIA request #20363 lists 50 camera locations ${c("E","Bluffton Flock Camera Locations")}, with a disclaimer that the project is "nearing completion" and not all cameras are active ${c("E","not all listed cameras are currently active")}. Locations depend partly on "property owner permissions" ${c("E","easement approvals, property owner permissions")}.`,
+  plain:`Seventeen months after the target date, the town still can't say which cameras are recording. Several entries repeat the same intersection.`}
+];
+
+const DUPS={7:"Same as #13, #14, #32",13:"Same corner as #7, #14, #32",14:"Same corner as #7, #13, #32",32:"Identical to #7",12:"Same corner as #49",49:"Same corner as #12",17:"Same corner as #44",44:"Same corner as #17",25:"Same corner as #46",46:"Same corner as #25",11:"Likely same corner as #30",30:"Likely same corner as #11"};
+
+const ASKS=[
+ ["Town Council records","Every agenda, minutes, and vote authorizing Flock, plus the contract, purchase orders, invoices, and renewal terms."],
+ ["The Flock SOP itself","The full policy as posted, every draft, and the committee's recommended changes."],
+ ["The March 2025 audit","The audit report, who performed it, and the minutes of the Mar 13, 2025 meeting."],
+ ["Missing minutes","Approved minutes for Oct 10, Nov 14, and Dec 12, 2024, and Feb 13, 2025, or proof a meeting was cancelled."],
+ ["Live camera status","Each camera's ID, exact location, install date, and date it began recording."],
+ ["Data rules","Retention period, the list of agencies Bluffton shares with, and whether national lookup is turned on."],
+ ["Search audit logs","Every search of the system: date, officer, stated reason, and case number."],
+ ["Private cameras","Any agreement giving BPD access to HOA or business Flock cameras, including Pine Ridge."],
+ ["Site permissions","Easements, property owner agreements, and SCDOT encroachment permits for cameras on state roads."],
+ ["Training","Training materials, dates, and attendance for staff with Flock access."],
+ ["CIP funding","Capital Improvement Program records on the camera “abatement” and its budget line."]
+];
+
+const TAGS={rec:["t-rec","On the record"],gap:["t-gap","Missing"],inf:["t-inf","Our reading"]};
+const strip=s=>s.replace(/<[^>]+>/g," ").replace(/&quot;/g,'"');
+
+document.getElementById("pointlist").innerHTML=POINTS.map((x,i)=>
+ `<article class="point s-item"><div class="rank">${i+1}</div>
+  <div><span class="tag ${TAGS[x.tag][0]}">${TAGS[x.tag][1]}</span><h3>${x.h}</h3></div>
+  <p>${x.p}</p>
+  <p class="ask"><b>Ask them:</b> ${x.ask}</p></article>`).join("");
+
+document.getElementById("storylist").innerHTML=STORY.map(x=>
+ `<div class="chapter s-item"><div class="when">${x.when}</div><h3>${x.h}</h3><p>${x.p}</p>
+  <div class="plain"><b>In plain English:</b> ${x.plain}</div></div>`).join("");
+
+const camLines=DOCS.E.text.split("\n").filter(l=>/^\d+\. /.test(l));
+document.getElementById("camrows").innerHTML=camLines.map(l=>{
+  const n=+l.split(".")[0], name=l.replace(/^\d+\. /,"");
+  return `<tr class="s-item"><td class="n">${n}</td><td><button type="button" class="hit" style="padding:0;border:0;background:none" data-doc="E" data-find="${n}. ${name}">${name}</button></td><td class="note">${DUPS[n]||""}</td></tr>`;
+}).join("");
+
+document.getElementById("asklist").innerHTML=ASKS.map(a=>`<li class="s-item"><b>${a[0]}.</b> ${a[1]}</li>`).join("");
+
+document.getElementById("exlist").innerHTML=ORDER.map(k=>{
+  const d=DOCS[k];
+  return `<div class="exh s-item"><div class="letter">${k}</div><div class="t"><span class="ui" style="font-weight:700">${d.title}</span><small>${d.file?d.file.replace("docs/",""):"Word document, transcribed"}</small></div><button type="button" class="cite" data-doc="${k}" data-find="">Read it</button></div>`;
+}).join("");
+
+/* ---------- Reader with back-to-place ---------- */
+const reader=document.getElementById("reader"), rdoc=document.getElementById("rdoc");
+let saved=null;
+const esc=s=>s.replace(/[&<>]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[m]));
+
+function openDoc(k,find,opener){
+  const d=DOCS[k];
+  document.getElementById("rtitle").innerHTML=`Exhibit ${k}: ${esc(d.title)}<small>${esc(d.short)}</small>`;
+  const o=document.getElementById("orig");
+  if(d.file){o.href=d.file;o.hidden=false}else{o.hidden=true}
+  const f=(find||"").toLowerCase();
+  let first=null;
+  rdoc.innerHTML=d.text.split("\n").map((l,i)=>{
+    const hit=f&&l.toLowerCase().includes(f);
+    return `<p class="line${hit?" hl":""}" id="ln${i}">${esc(l)||"&nbsp;"}</p>`;
+  }).join("")+(d.note?`<div class="note">${esc(d.note)}</div>`:"")+(d.file?`<div class="note">This is a text copy for easy reading. Use "Open original file" above to see the town's PDF.</div>`:"");
+  reader.hidden=false;
+  document.body.style.overflow="hidden";
+  try{history.pushState({reader:1},"")}catch(e){}
+  const hl=rdoc.querySelector(".hl");
+  reader.scrollTop=0;
+  if(hl) requestAnimationFrame(()=>{reader.scrollTop=Math.max(0,hl.offsetTop-140)});
+  document.getElementById("back").focus();
+}
+function closeDoc(fromPop){
+  if(reader.hidden) return;
+  reader.hidden=true;
+  document.body.style.overflow="";
+  if(saved){window.scrollTo({top:saved.y,behavior:"instant"});saved.el&&saved.el.focus({preventScroll:true})}
+  saved=null;
+  if(!fromPop){try{if(history.state&&history.state.reader)history.back()}catch(e){}}
+}
+document.getElementById("back").onclick=()=>closeDoc(false);
+window.addEventListener("popstate",()=>closeDoc(true));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDoc(false)});
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-doc]");
+  if(!b) return;
+  e.preventDefault();
+  saved={y:window.scrollY,el:b};
+  openDoc(b.dataset.doc,b.dataset.find,b);
+});
+
+/* ---------- Search ---------- */
+const q=document.getElementById("q"), count=document.getElementById("count"), hits=document.getElementById("dochits");
+const items=[...document.querySelectorAll(".s-item")];
+items.forEach(el=>el._t=el.textContent.toLowerCase());
+q.addEventListener("input",()=>{
+  const s=q.value.trim().toLowerCase();
+  let n=0;
+  items.forEach(el=>{const m=!s||el._t.includes(s);el.classList.toggle("hide",!m);if(m&&s)n++});
+  document.querySelectorAll("section").forEach(sec=>{
+    const any=[...sec.querySelectorAll(".s-item")].some(el=>!el.classList.contains("hide"));
+    sec.classList.toggle("hide",!!s&&!any);
+  });
+  if(!s){count.textContent="";hits.innerHTML="";return}
+  const dl=[];
+  ORDER.forEach(k=>DOCS[k].text.split("\n").forEach(l=>{if(l.toLowerCase().includes(s)&&dl.length<8)dl.push([k,l])}));
+  count.textContent=`${n} match${n===1?"":"es"} on this page · ${dl.length}${dl.length===8?"+":""} line${dl.length===1?"":"s"} in the source files`;
+  const re=new RegExp(s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"ig");
+  hits.innerHTML=dl.map(([k,l])=>`<button type="button" class="hit" data-doc="${k}" data-find="${esc(l.trim()).replace(/"/g,'&quot;')}"><small>Exhibit ${k} · ${esc(DOCS[k].short)}</small>${esc(l.trim()).replace(re,m=>`<mark class="q">${m}</mark>`)}</button>`).join("");
+});
+</script>
+
+</body>
+</html>
